@@ -31,7 +31,7 @@ clf.fit(features_train, labels_train)
 
 # print len(features_test), len(labels_test)
 pred = clf.predict(features_test)
-
+print clf.score(features_test, labels_test)
 count = 0
 for k in pred:
     if k == 1:

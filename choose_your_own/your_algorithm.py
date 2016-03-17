@@ -30,10 +30,13 @@ plt.show()
 
 ### your code here!  name your classifier object clf if you want the 
 ### visualization code (prettyPicture) to show you the decision boundary
-
-
-
-
+from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier
+from sklearn.neighbors import NearestNeighbors
+# clf = RandomForestClassifier()
+# clf = AdaBoostClassifier()
+# clf = NearestNeighbors()
+clf.fit(features_train, labels_train)
+print clf.score(features_test, labels_test)
 
 
 
