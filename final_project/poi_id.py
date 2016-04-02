@@ -2,6 +2,7 @@
 
 import sys
 import pickle
+import matplotlib.pyplot
 sys.path.append("../tools/")
 
 from feature_format import featureFormat, targetFeatureSplit
@@ -10,13 +11,30 @@ from tester import dump_classifier_and_data
 ### Task 1: Select what features you'll use.
 ### features_list is a list of strings, each of which is a feature name.
 ### The first feature must be "poi".
-features_list = ['poi','salary'] # You will need to use more features
+features_list = ['poi', 'salary', 'bonus', 'from_poi_to_this_person', 'from_this_person_to_poi'] 
 
 ### Load the dictionary containing the dataset
 with open("final_project_dataset.pkl", "r") as data_file:
     data_dict = pickle.load(data_file)
+# data_dict.pop('TOTAL', 0)
+data = featureFormat(data_dict, features_list)
 
 ### Task 2: Remove outliers
+# feature_list
+
+from sklearn.linear_model import LinearRegression
+# reg = LinearRegression.fit()
+
+for point in data:
+    x = point[1]
+    y = point[2]
+    matplotlib.pyplot.scatter(x, y)
+
+matplotlib.pyplot.xlabel("salary")
+matplotlib.pyplot.ylabel("bonus")
+matplotlib.pyplot.show()
+
+
 ### Task 3: Create new feature(s)
 ### Store to my_dataset for easy export below.
 my_dataset = data_dict
@@ -53,3 +71,4 @@ features_train, features_test, labels_train, labels_test = \
 ### generates the necessary .pkl files for validating your results.
 
 dump_classifier_and_data(clf, my_dataset, features_list)
+
