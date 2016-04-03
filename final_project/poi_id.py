@@ -16,7 +16,7 @@ features_list = ['poi', 'salary', 'bonus', 'from_poi_to_this_person', 'from_this
 ### Load the dictionary containing the dataset
 with open("final_project_dataset.pkl", "r") as data_file:
     data_dict = pickle.load(data_file)
-# data_dict.pop('TOTAL', 0)
+data_dict.pop('TOTAL', 0)
 data = featureFormat(data_dict, features_list)
 
 ### Task 2: Remove outliers
@@ -26,8 +26,8 @@ from sklearn.linear_model import LinearRegression
 # reg = LinearRegression.fit()
 
 for point in data:
-    x = point[1]
-    y = point[2]
+    x = point[0]
+    y = point[1]
     matplotlib.pyplot.scatter(x, y)
 
 matplotlib.pyplot.xlabel("salary")
